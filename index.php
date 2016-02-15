@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("connection.php");
+include_once("templates/connection.php");
 
 //Post data retrival
 $salt = "srtg5849jnswf9045h";
@@ -14,10 +14,13 @@ $result = mysql_query($query);
 $values = mysql_fetch_array($result);
 $database_password = $values["password"];
 $database_email = $values["email"];
+echo $database_password;
+
 if($input_email!=null) {
     if ($database_password == $input_password and $input_email == $database_email) {
         $_SESSION["email"] = $input_email;
-        header("Location: home.php");
+        $_SESSION["logged_in"] = true;
+        header("Location: templates/home.php");
     } else {
         echo "<script>alert('Wrong username or password')</script>";
     }
