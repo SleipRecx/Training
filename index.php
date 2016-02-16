@@ -27,7 +27,6 @@ if($input_email!=null) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,8 +65,6 @@ if($input_email!=null) {
                 login.style.display ="none";
             }
         }
-
-
     </script>
 </head>
 <body id="background">
@@ -103,9 +100,8 @@ if($input_email!=null) {
         </div>
         <br>
         <br>
-                <button type="submit" name="submit" class="btn btn-success" style="margin-right: 20px;">Login</button>
-                <button onclick="toggle_visibility('reg')" type="button" id="register" class="btn btn-info">Register</button>
-
+            <button type="submit" name="submit" class="btn btn-success" style="margin-right: 20px;">Login</button>
+            <button onclick="toggle_visibility('reg')" type="button" id="register" class="btn btn-info">Register</button>
     </form>
         </div>
 </center>
