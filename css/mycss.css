@@ -1,3 +1,14 @@
+html {
+    height: 100%;
+}
+body {
+    min-height: 100%;
+    margin:0px;
+    padding:0px;
+    background-color: #f0f2f0;
+    -webkit-font-smoothing: antialiased;
+}
+
 #login{
     width: 600px;
     height: 450px;
@@ -15,14 +26,6 @@
 .form-group{
     padding: 5px;
 }
-/* Change the white to any color ;) */
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px white inset;
-}
-input:-webkit-autofill:enabled {
-    -webkit-box-shadow: 0 0 0px 1000px white inset;
-}
-
 
 #background {
     background: url(../images/blur2.jpg) no-repeat center center fixed;
@@ -38,10 +41,10 @@ input:-webkit-autofill:enabled {
     display: none;
     position:fixed;
     color: white;
-    top: 50%;
+    top: 40%;
     left: 50%;
-    width:65em;
-    height:45em;
+    width:60em;
+    height:43em;
     margin-top: -22em; /*set to a negative number 1/2 of your height*/
     margin-left: -32em; /*set to a negative number 1/2 of your width*/
     background-color: rgba(0, 0, 0, 0.4);
@@ -54,22 +57,36 @@ input:-webkit-autofill:enabled {
     -o-animation: fadein 1s; /* Opera < 12.1 */
     animation: fadein 1s;
 }
+
 #reg button{
     width: 20%;
 }
 #lable{
+    width: 100%;
     display: inline-block;
     margin-bottom: 5px;
-    margin-left: 75px;
+    margin-left: 55%;
 }
 .progress{
     margin-bottom: 5px;
-    width: 130%;
+    width: 210%;
 
 }
 .password-verdict{
-    margin-left: 75px;
+    margin-left: 57%;
+    width: 100%;
+    display: inline-block;
 }
+
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+input:-webkit-autofill:enabled {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
 
 
 @keyframes fadein {
@@ -99,4 +116,110 @@ input:-webkit-autofill:enabled {
 @-o-keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
+}
+
+
+#container{
+    padding-top: 100px;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.3s linear;
+}
+
+.active-bar{
+    width: 80%;
+    transform: translate3d(15%, 0, 0);
+}
+
+nav{
+    background-color: #2b3643;
+    width: 100%;
+    height: 50px;
+}
+
+#sidebar{
+    position: absolute;
+    width: 15%;
+    height: 100%;
+    left: -15%;
+    font-size: 14px;
+    z-index: 1000;
+    background-color: #364150;
+    display: block;
+    color: white;
+    transition: left 0.3s linear;
+}
+#sidebar ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+#sidebar ul li {
+    list-style: none;
+}
+#sidebar li {
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+hr{
+    border-top: groove 0.5px lightgray;
+    margin: 8px;
+    padding: 0px;
+
+}
+#sidebar li:hover {
+    background-color: #2b3643;
+    cursor: pointer;
+}
+.white{
+    color: lightgray;
+}
+
+#sidebar.visible{
+    left: 0px;
+    transition: left 0.3s linear;
+}
+
+#sidebar-btn{
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 15px;
+    margin: 20px;
+    cursor: pointer;
+}
+
+#sidebar-btn span{
+    height: 1px;
+    background: lightgray;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+nav a:link{
+    color: lightgray;
+    text-decoration: none;
+}
+
+nav a:visited{
+    color: lightgray;
+    text-decoration: none;
+}
+
+nav a:hover{
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+nav a:active{
+    color: lightgray;
+    text-decoration: none;
 }

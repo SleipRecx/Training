@@ -1,33 +1,8 @@
-<script>
-    function validate() {
-        var firstname = document.getElementById("firstname").value;
-        var lastname = document.getElementById("lastname").value;
-        var email = document.getElementById("email").value;
-        var nickname = document.getElementById("displayname").value;
-        var password = document.getElementById("registerpassword").value;
-        var password2 = document.getElementById("registerpassword2").value;
-        var strength = document.getElementsByClassName("password-verdict")[0].innerHTML;
-        if(firstname!="" && lastname!="" && email!="" && nickname!="" && password!=""){
-            if(strength=="Weak"){
-                alert("Password strength has to be normal or better");
-                return false;
-            }
-            if(password!=password2{
-                return false;
-            }
-            return true;
-        }
-
-        return false;
-    }
-</script>
-
-
 <br>
 <h3>Register Below</h3>
 <br>
 <br>
-<form class="form-horizontal" role="form" method="POST" action="newuser.php" onsubmit="return validate()">
+<form class="form-horizontal" role="form" method="POST" action="templates/newuser.php" onsubmit="return validate()">
     <div class="form-group">
         <label class="control-label col-sm-2" for="firstname">Name:</label>
         <div class="col-sm-4">

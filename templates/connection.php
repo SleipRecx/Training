@@ -3,11 +3,11 @@
 $dbhost = 'mysql.stud.ntnu.no';
 $dbuser = 'markua_test';
 $dbpass = '123456';
-$conn = mysql_connect($dbhost, $dbuser, $dbpass);
+$conn = mysqli_connect($dbhost, $dbuser, $dbpass);
 if(!$conn )
 {
-    die('Could not connect: ' . mysql_error());
+    die('Could not connect: ' . mysqli_error());
 }
 //Databse selection
-mysql_select_db("markua_trening",$conn);
+mysqli_select_db("markua_trening",$conn);
 

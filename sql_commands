@@ -1,0 +1,7 @@
+getAllRecordsForName
+select exercise_name,kg,reps
+from records
+join persons on personid=personid_fk
+join exercise on exerciseid=exerciseid_fk
+where firstname ='Markus'
+group by exercise_name,kg

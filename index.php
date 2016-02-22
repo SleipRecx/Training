@@ -2,26 +2,31 @@
 session_start();
 include_once("templates/connection.php");
 
-//Post data retrival
+//Head to home.php if user is already logged in
+if($_SESSION["logged_in"]==true){
+    header("Location: templates/home.php");
+}
+
+//Retrive user input
 $salt = "srtg5849jnswf9045h";
 $input_email = $_POST["email"];
 $input_password = md5($salt . $_POST["password"]);
 
-$sql = "SELECT `personid`,`email`,`password` FROM `persons` WHERE `email` = '$input_email'";
-$query = $sql;
-$result = mysql_query($query);
-
+//Retrive from database
+$sql = "SELECT personid, password,firstname,lastname FROM persons WHERE email = '$input_email'";
+$result = mysql_query($sql);
 $values = mysql_fetch_array($result);
 $database_password = $values["password"];
-$database_email = $values["email"];
-echo $database_password;
 
+//Check if password is correct
 if($input_email!=null) {
-    if ($database_password == $input_password and $input_email == $database_email) {
-        $_SESSION["email"] = $input_email;
+    if ($database_password == $input_password) {
+        $_SESSION["personid"] = $values["personid"];
         $_SESSION["logged_in"] = true;
+        $_SESSION["name"] = $values["firstname"]." ".$values["lastname"];
         header("Location: templates/home.php");
-    } else {
+    }
+    else {
         echo "<script>alert('Wrong username or password')</script>";
     }
 }
@@ -40,7 +45,6 @@ if($input_email!=null) {
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-
     <script src="js/pwstrength.js"></script>
 
     <script type="application/javascript">
@@ -52,58 +56,50 @@ if($input_email!=null) {
             var e = document.getElementById(id);
             var login = document.getElementById("login");
 
-            if(e.style.display == 'block') {
+            if(e.style.display == 'block'){
                 e.style.display = 'none';
                 e.style.opacity = "0";
-                login.style.display ="block";
-
-            }
+                login.style.display ="block";}
             else {
                 e.style.display = 'block';
                 e.style.opacity = "1";
-
                 login.style.display ="none";
             }
         }
+        function validate(){
+            var firstname = document.getElementById("firstname").value;
+            var lastname = document.getElementById("lastname").value;
+            var email = document.getElementById("email").value;
+            var nickname = document.getElementById("displayname").value;
+            var password = document.getElementById("registerpassword").value;
+            var password2 = document.getElementById("registerpassword2").value;
+            var strength = document.getElementsByClassName("password-verdict")[0].innerHTML;
+            if(firstname!="" & lastname!="" && email!="" && nickname!="" && password!=""){
+                if(strength=="Weak"){
+                    alert("Password strength has to be normal or better");
+                    return false;
+                }
+                if(password!=password2){
+                    return false;
+                }
+                return true;
+            }
+            else{
+                alert("All fields needs to be filled out");
+                return false;
+            }
+
+        }
     </script>
+
 </head>
 <body id="background">
 <div id="reg">
-    <?php include 'register.php';?>
+    <?php include 'templates/registerForm.php';?>
 </div>
 <br>
 <center>
-    <div id="login">
-        <h2>Welcome - Please sign in</h2>
-        <br>
-    <form class="form-horizontal" role="form" method="POST" action="index.php">
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="email">Email:</label>
-            <div class="col-sm-10">
-                <input type="email" class="form-control" id ="email" name="email" placeholder="Enter email">
-            </div>
-        </div>
-        <br>
-        <br>
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="password">Password:</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" id ="password" name="password" placeholder="Enter password">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-0 col-sm-0">
-                <div class="checkbox">
-                    <label><input type="checkbox"> Remember me</label>
-                </div>
-            </div>
-        </div>
-        <br>
-        <br>
-            <button type="submit" name="submit" class="btn btn-success" style="margin-right: 20px;">Login</button>
-            <button onclick="toggle_visibility('reg')" type="button" id="register" class="btn btn-info">Register</button>
-    </form>
-        </div>
+    <?php include 'templates/loginForm.php';?>
 </center>
 <br>
 <br>
