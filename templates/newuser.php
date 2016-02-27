@@ -21,12 +21,12 @@ else {
 
     VALUES ('$lastname','$firstname','$password',NULL,NULL,'$email')";
 
-    $retv = mysql_query($sql);
-
+    $retval = mysql_query($sql);
     if(! $retval) {
         die('Could not enter data: ' . mysql_error());
     }
     echo "Entered data successfully\n";
+    header("Location: ../index.php");
 }
 if(empty($id)){
 
