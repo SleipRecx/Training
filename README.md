@@ -1,8 +1,13 @@
 # Training
 Website for logging training
 
-Running on http://folk.ntnu.no/markua/etc/Treningsdagbok/
+Running on http://folk.ntnu.no/markua
+
+
+![alt tag](http://puu.sh/nnxXo/8cee9f9027.png)
 
 ![alt tag](http://puu.sh/n7IfI/6e18ee1cad.png)
 
-![alt tag](http://puu.sh/n7InL/6bd337d444.png)
+![alt tag](http://puu.sh/nny0M/b57eea43f0.png)
+
+
