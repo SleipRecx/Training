@@ -22,20 +22,21 @@ if(empty($_SESSION['logged_in'])) {
     <?php include("sidebar.php")?>
 </div>
 
-<div id="container">
+<div class="container active-bar">
     <div class="inner">
     <br>
-    <div class="alert alert-success" style="width: 50%; text-align: center; margin: 0 auto;" role="alert">
+    <div class="alert alert-success" role="alert">
         <br>
-        <span id="name">Welcome <?php echo $_SESSION["name"]; ?></span>
-        <br>
-        <br>
+        <h3 id="name">Welcome <?php echo $_SESSION["name"]; ?></h3>
         <br>
         <br>
-        <button class="btn btn-warning" onclick="logout()"> Logout </button>
+        <br>
+        <br>
+        <button class="btn btn-success" onclick="logout()"> Logout </button>
         <br>
     </div>
     <br>
+
     </div>
 </div>
 
