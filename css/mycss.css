@@ -205,13 +205,13 @@ nav{
 /* START LOGIN SYSTEM CSS */
 
 #login{
-    width: 600px;
-    height: 450px;
+    min-width: 350px;
+    width: 35%;
+    height: 40%;
     padding: 40px;
     background-color: rgba(0, 0, 0, 0.4);
     color: white;
-    box-shadow: 0px 0px 15px #282828;
-    border-radius: 10px;
+    border-radius: 6px;
     text-align: center;
     margin: 5% auto 0;
 }
@@ -225,16 +225,12 @@ nav{
 }
 
 #background {
-    background: url(../images/blur2.jpg) no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    background-color: #848484;
 }
 
 #reg{
     text-align: center;
-    border-radius: 10px;
+    border-radius: 6px;
     display: none;
     position:fixed;
     color: white;
@@ -246,7 +242,6 @@ nav{
     margin-left: -32em; /*set to a negative number 1/2 of your width*/
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 99;
-    box-shadow: 0px 0px 15px #282828;
     opacity: 0;
     -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
     -moz-animation: fadein 1s; /* Firefox < 16 */
@@ -304,6 +299,9 @@ a:active{
 /* END LINK FIX */
 
 
+.borderless{
+    border-radius: 0px;
+}
 
 /* START RANDOM FIX */
 
