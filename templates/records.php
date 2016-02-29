@@ -43,7 +43,7 @@ $sql =
 
     <div class="panel">
         <!-- Default panel contents -->
-        <div class="panel-heading"><h4 style="text-align: center">All Lifts <span class="glyphicon glyphicon-star-empty" style="float: right"></span</h4></div>
+        <div class="panel-heading borderless"><h4 style="text-align: center">All Lifts <span class="glyphicon glyphicon-star-empty" style="float: right"></span</h4></div>
         <!-- Table -->
         <table class="table table-striped">
             <thead>
@@ -70,7 +70,7 @@ $sql =
         $query = mysql_query($sql);
         while ($row = mysql_fetch_array($query)) {
             echo '<div class="panel">';
-            echo '<div class="panel-heading"><h4 style="text-align: center">'.$row[exercise_name].'</h4></div>';
+            echo '<div class="panel-heading borderless"><h4 style="text-align: center">'.$row[exercise_name].'</h4></div>';
             echo '<table class="table table-striped">';
             echo '<thead><tr><th>Weight (kg)</th><th>Repetitions</th><th>Date</th></tr></thead>';
             $exerciseID = $row[exerciseid];

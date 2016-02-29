@@ -12,7 +12,6 @@ $query = mysql_query(
     from exercise
     join persons on personid=personid_fk");
 
-
 ?>
 
 <!DOCTYPE html>
@@ -39,12 +38,10 @@ $query = mysql_query(
     <div class="inner">
 
 
-
-
         <div class="panel panel-default">
 
             <!-- Default panel contents -->
-            <div class="background-blue panel-heading" style="height: 80px;"><h3 style="text-align: center; margin-top: 10px;">All Exercises</h3></div>
+            <div class="background-blue panel-heading borderless" style="height: 80px;"><h3 style="text-align: center; margin-top: 10px;">All Exercises</h3></div>
 
 
             <!-- Table -->
@@ -85,7 +82,7 @@ $query = mysql_query(
                 ?>
             </table>
             <form class="form-horizontal" role="form" method="POST" action="newExercise.php">
-            <div class="panel-footer">
+            <div class="panel-footer borderless">
                 <table class="table" id="addNew">
                     <tr>
                         <td><input class="form-control"  placeholder="Exercise Name" name="exercise_name"  type="text" style="height: 33px;"></td>
