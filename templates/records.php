@@ -31,19 +31,19 @@ if(empty($_SESSION['logged_in'])) {
     $id = $_SESSION["personid"];
     $query1 = mysql_query(
     /** @lang MYSQL */
-    "select exercise_name,kg,reps
+    "select exercise_name,kg,reps,exerciseid
     from records
     join persons on personid=personid_fk
     join exercise on exerciseid=exerciseid_fk
     where personid ='$id'
     group by kg,exercise_name
     having (exercise_name,kg) in
-    (select exercise_name,max(kg) from records
-    join exercise on exerciseid = exerciseid_fk
-    join persons on personid = personid_fk
+    (select exercise_name,max(kg) from records r
+    join persons p on p.personid = r.personid_fk
+    join exercise e on r.exerciseid_fk = e.exerciseid
     where personid = '$id'
-    group by exerciseid_fk)
-    order by kg desc");
+    group by exercise_name)
+    order by exerciseid");
 
     $query2 = mysql_query(
     /** @lang MYSQL */
