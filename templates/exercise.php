@@ -8,7 +8,7 @@ if(empty($_SESSION['logged_in'])) {
 
 $query = mysql_query(
 /** @lang MYSQL */
-    "select personid,firstname,lastname,exercise_name,muscle_group,category
+    "select personid,firstname,lastname,exercise_name,muscle_group,category,exerciseid
     from exercise
     join persons on personid=personid_fk");
 
@@ -55,12 +55,22 @@ $query = mysql_query(
                     <th>Muscle Group</th>
                     <th>Category</th>
                     <th>Added By</th>
+
                 </tr>
                 </thead>
+
                 <?php
                 while ($row = mysql_fetch_array($query)) {
                     echo "<tr>";
-                    echo "<td>".$row[exercise_name]."</td>";
+                    if($row[personid]==$_SESSION[personid] or $_SESSION[personid] == 0){
+                        echo '<form action="delexercise.php" method="post">';
+                        echo '<input type="hidden" name="exerciseid" value='.'"'.$row[exerciseid].'"'.'>';
+                        echo '<td><input type="submit" class="textButton" value='.'"'.$row[exercise_name].'"'.'></td>';
+                        echo '</form>';
+                    }
+                    else{
+                        echo "<td>".$row[exercise_name]."</td>";
+                    }
                     echo "<td>".$row[muscle_group]."</td>";
                     echo "<td>".$row[category]."</td>";
                     if($row[personid]==0){
