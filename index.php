@@ -35,6 +35,7 @@ if($input_email!=null) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Index</title>
@@ -98,9 +99,7 @@ if($input_email!=null) {
     <?php include 'templates/registerForm.php';?>
 </div>
 <br>
-<center>
     <?php include 'templates/loginForm.php';?>
-</center>
 <br>
 <br>
 <br>

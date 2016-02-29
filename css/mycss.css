@@ -207,12 +207,13 @@ nav{
 #login{
     width: 600px;
     height: 450px;
-    margin-top: 100px;
     padding: 40px;
     background-color: rgba(0, 0, 0, 0.4);
     color: white;
     box-shadow: 0px 0px 15px #282828;
     border-radius: 10px;
+    text-align: center;
+    margin: 5% auto 0;
 }
 
 #login button{
@@ -224,7 +225,7 @@ nav{
 }
 
 #background {
-    background: url(../images/blur2.jpg) no-repeat center center fixed;
+    background: url(../images/blur2.jpg) no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
