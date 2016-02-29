@@ -100,6 +100,7 @@ if($input_email!=null) {
 </div>
 <br>
     <?php include 'templates/loginForm.php';?>
+
 <br>
 <br>
 <br>

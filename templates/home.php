@@ -25,7 +25,7 @@ if(empty($_SESSION['logged_in'])) {
 <div class="container active-bar">
     <div class="inner">
     <br>
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-success" role="alert" style="max-width: 800px;">
         <br>
         <h3 id="name">Welcome <?php echo $_SESSION["name"]; ?></h3>
         <br>
