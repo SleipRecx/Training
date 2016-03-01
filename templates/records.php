@@ -13,7 +13,7 @@ $sql =
     join sessions s on s.sessionid=ex.sessionid_fk
     join persons p on p.personid = s.personid_fk
     join exercise e on e.exerciseid=ex.exerciseid_fk
-    where personid =1
+    where personid = '$id'
     group by kg,exercise_name
     having(exerciseid,kg) in
     (select exerciseid,max(kg)
@@ -80,9 +80,12 @@ $sql =
                 from execution ex
                 join exercise e on ex.exerciseid_fk = e.exerciseid
                 join sessions s on s.sessionid = ex.sessionid_fk
-                where  e.exerciseid = '$exerciseID'
+                join persons p on p.personid = s.personid_fk
+                where e.exerciseid ='$exerciseID' and p.personid = '$id'
                 group by kg
                 order by kg desc";
+
+
             $query2 = mysql_query($sql2);
             while ($row = mysql_fetch_array($query2)) {
                 echo "<tr>";

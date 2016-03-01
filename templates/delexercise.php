@@ -25,7 +25,8 @@ else{
     $retval = mysql_query($sql);
     echo $retval;
     if(! $retval) {
-        die('Could not enter data: ' . mysql_error());
+        echo "<h2 style='text-align: center'>The exercise you are trying to delete is in use</h2>";
+        header("refresh:2;url=exercise.php" );
     }
     else{
         echo "Entered data successfully\n";

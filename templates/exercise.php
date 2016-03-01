@@ -60,9 +60,11 @@ $query = mysql_query(
                 while ($row = mysql_fetch_array($query)) {
                     echo "<tr>";
                     if($row[personid]==$_SESSION[personid] or $_SESSION[personid] == 0){
-                        echo '<form action="delexercise.php" method="post">';
+                        echo '<form action="delexercise.php"  onsubmit="return confirm(\'Are you sure you want to delete this exercise?\');" method="post">';
                         echo '<input type="hidden" name="exerciseid" value='.'"'.$row[exerciseid].'"'.'>';
-                        echo '<td><input type="submit" class="textButton" value='.'"'.$row[exercise_name].'"'.'></td>';
+                        echo '<td>';
+                        echo '<span style="display: none">'.$row[exercise_name].'</span>';
+                        echo '<input type="submit" class="textButton" value='.'"'.$row[exercise_name].'"'.'></td>';
                         echo '</form>';
                     }
                     else{
@@ -81,7 +83,7 @@ $query = mysql_query(
                 }
                 ?>
             </table>
-            <form class="form-horizontal" role="form" method="POST" action="newExercise.php">
+            <form class="form-horizontal" role="form" method="POST"  action="newExercise.php">
             <div class="panel-footer borderless">
                 <table class="table" id="addNew">
                     <tr>
