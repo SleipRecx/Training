@@ -23,13 +23,16 @@ if(empty($_SESSION['logged_in'])) {
 </div>
 
 <div class="container active-bar">
+
     <div class="inner">
-    <br>
+        <br>
+
+        <br>
     <div class="alert alert-success" role="alert" style="max-width: 800px;">
         <br>
         <h3 id="name">Welcome <?php echo $_SESSION["name"]; ?></h3>
         <br>
-        <br>
+
         <br>
         <br>
         <button class="btn btn-success" onclick="logout()"> Logout </button>

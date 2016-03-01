@@ -35,7 +35,6 @@ if($input_email!=null) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Index</title>
@@ -47,6 +46,7 @@ if($input_email!=null) {
     <script src="js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="js/pwstrength.js"></script>
+    <script src="js/validator.js"></script>
 
     <script type="application/javascript">
         $(document).ready(function () {
@@ -67,17 +67,25 @@ if($input_email!=null) {
                 login.style.display ="none";
             }
         }
+        function clearFields(){
+            document.getElementById("firstname").value="";
+            document.getElementById("lastname").value="";
+            document.getElementById("email").value="";
+            document.getElementById("displayname").value="";
+            document.getElementById("registerpassword").value="";
+            document.getElementById("registerpassword2").value="";
+        }
+
         function validate(){
             var firstname = document.getElementById("firstname").value;
             var lastname = document.getElementById("lastname").value;
             var email = document.getElementById("email").value;
-            var nickname = document.getElementById("displayname").value;
             var password = document.getElementById("registerpassword").value;
             var password2 = document.getElementById("registerpassword2").value;
             var strength = document.getElementsByClassName("password-verdict")[0].innerHTML;
-            if(firstname!="" & lastname!="" && email!="" && nickname!="" && password!=""){
+            if(firstname!="" & lastname!="" && email!=""  && password!=""){
                 if(strength=="Weak"){
-                    alert("Password strength has to be normal or better");
+                    alert("That password sucks, pick another one");
                     return false;
                 }
                 if(password!=password2){
@@ -94,12 +102,13 @@ if($input_email!=null) {
     </script>
 
 </head>
-<body id="background">
-<div id="reg">
+<body style="background-color: rgba(49, 107, 136, 0.84)">
+<div id="reg" class="logindiv">
     <?php include 'templates/registerForm.php';?>
 </div>
-<br>
+<div id="login" class="logindiv">
     <?php include 'templates/loginForm.php';?>
+</div>
 
 <br>
 <br>
