@@ -87,11 +87,10 @@ $query = mysql_query(
             <div class="panel-footer borderless">
                 <table class="table" id="addNew">
                     <tr>
-                        <td><input class="form-control"  placeholder="Exercise Name" name="exercise_name"  type="text" style="height: 33px;"></td>
-                        <td><input class="form-control"  placeholder="Muscle Group" name="muscle_group"  type="text" style="height: 33px;"></td>
-                        <td><input class="form-control" placeholder="Category" name="category" type="text" style="height: 33px;"></td>
-                        <td> <button name="add" type="submit" class="btn btn-primary btn-sm" style="margin-left:15%">Add Exercise</button></td>
-                       <input type="hidden" value="<?php echo $_SESSION["personid"]?>" name="personid_fk">
+                        <td><input class="form-control"  placeholder="Exercise Name" name="exercise_name"  type="text" style="height: 33px;margin-top: 10px;"></td>
+                        <td><input class="form-control"  placeholder="Muscle Group" name="muscle_group"  type="text" style="height: 33px;margin-top: 10px;"></td>
+                        <td><input class="form-control" placeholder="Category" name="category" type="text" style="height: 33px;margin-top: 10px;"></td>
+                        <td> <button name="add" type="submit" class="btn btn-primary btn-sm" style="margin-left:5%;height: 33px;margin-top: 10px;">Add Exercise</button></td>
                     </tr>
                 </table>
             </div>
