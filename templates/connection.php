@@ -3,11 +3,12 @@
 $dbhost = 'mysql.stud.ntnu.no';
 $dbuser = 'markua_test';
 $dbpass = '123456';
-$conn = mysqli_connect($dbhost, $dbuser, $dbpass);
+$conn = mysql_connect($dbhost, $dbuser, $dbpass);
 if(!$conn )
 {
-    die('Could not connect: ' . mysqli_error());
+    die('Could not connect: ' . mysql_error());
 }
+mysql_query("set names 'utf8'");
 //Databse selection
-mysqli_select_db("markua_trening",$conn);
+mysql_select_db("markua_trening",$conn);
 
