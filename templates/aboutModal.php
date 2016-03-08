@@ -2,7 +2,8 @@
     <div class="modal-content">
         <h4>About</h4>
         <p>Made with PHP and JavaScript</p>
-        <p>Frontend design made with  Materialize framework</p>
+        <p>Frontend design created with Materialize framework</p>
+        <br>
         <br>
         <p>More info coming soon...</p>
     </div>
