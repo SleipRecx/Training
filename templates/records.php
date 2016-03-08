@@ -37,7 +37,7 @@ $sql =
 
 <div class="container active-bar">
     <div class="inner">
-
+        <?php include("aboutModal.php")?>
     <div class="panel">
         <!-- Default panel contents -->
         <div class="panel-heading borderless"><h4 style="text-align: center">All Lifts <span class="glyphicon glyphicon-star-empty" style="float: right"></span</h4></div>
@@ -100,6 +100,8 @@ $sql =
             echo "</table></div><br>";
         }
             ?>
+
+
 
     </div>
 </div>

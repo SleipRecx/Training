@@ -66,6 +66,7 @@ include("login_required.php");
 </script>
 <div class="container active-bar">
     <div class="inner">
+        <?php include("aboutModal.php")?>
         <div class="row">
             <table class="table table-centred" style="width: 70%; margin: 0 auto">
                 <form class="form" role="form" data-toggle="validator" method="POST" action="newSession.php" style="text-align: center">
@@ -171,7 +172,7 @@ include("login_required.php");
             echo '</select>';
             echo '</td>';
             echo '<td>';
-            echo '<button name="add" style="margin-left: 50px;" type="submit" class="btn exercise" >Add Exercise</button>';
+            echo '<button name="add" style="display: block; margin: 0 auto" type="submit" class="btn exercise" >Add Exercise</button>';
             echo '</td>';
             echo '</tr>';
             echo "</table>";

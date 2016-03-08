@@ -93,9 +93,7 @@ main {
 
 /* END EXERCISE DATA TABLE */
 
-.collapsible-header:hover{
-    background-color: #F2F2F2;
-}
+
 
 
 /* START SIDEBAR */
@@ -198,9 +196,6 @@ nav{
     text-align: center;
 }
 
-#addNew tr:hover{
-    background-color: white; !important;
-}
 
 #dropdown1 li a{
     color: white;

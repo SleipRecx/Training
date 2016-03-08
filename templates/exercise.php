@@ -31,6 +31,7 @@ $query = mysql_query(
 
 <div class="container active-bar">
     <div class="inner">
+        <?php include("aboutModal.php")?>
         <div class="row">
             <div id="admin" class="col s12">
                 <div class="card material-table">

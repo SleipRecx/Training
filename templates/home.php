@@ -18,6 +18,8 @@ include("login_required.php");
 </div>
 <div class="container active-bar">
     <div class="inner">
+        <?php include("aboutModal.php")?>
+
         <br>
         <br>
         <div class="card" style="background-color:#1f7e9a;color:white;text-align: center">
@@ -31,8 +33,7 @@ include("login_required.php");
                 <a class="btn tooltipped"  data-position="top"  onclick="logout()" data-delay="20" data-tooltip="Goodbye">Logout</a>
             </div>
         </div>
-
-        </div>
     </div>
+</div>
 </body>
 </html>
