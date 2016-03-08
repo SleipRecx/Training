@@ -1,28 +1,25 @@
 <?php
 session_start();
 include_once("connection.php");
-if(empty($_SESSION['logged_in'])) {
-    header('Location: ../index.php');
-    exit;
-}
+include_once ("login_required.php");
 
-$reps = $_POST["reps"];
-$kg = $_POST["kg"];
-$belt = $_POST["belt"];
-$sessID = $_POST["sessID"];
-$exerciseid_fk = $_POST["exerciseid"];
-if(!empty($_POST["sessID"])) {
 
+if(!empty($_POST["resultid"])) {
+    $reps = $_POST["reps"];
+    $kg = $_POST["kg"];
+    $resultid_fk = $_POST["resultid"];
     $sql = /** @lang text */
-        "INSERT INTO execution(sessionid_fk,exerciseid_fk,reps,kg,belt)
-     VALUES ('$sessID','$exerciseid_fk','$reps','$kg','$belt')";
+        "INSERT INTO execution(resultid_fk,reps,kg)
+        VALUES ($resultid_fk,$reps,$kg)";
     $retval = mysql_query($sql);
+    echo $retval;
 
     if(! $retval) {
         die('Could not enter data: ' . mysql_error());
     }
 
 }
+header('Location: session.php');
 
-header('Location: session.php#anchor'.$sessID);
+
 

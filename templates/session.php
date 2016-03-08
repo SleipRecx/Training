@@ -54,6 +54,17 @@ include("login_required.php");
             }
         );
 
+        $(document).ready(function(){
+            $('.collapsible').collapsible({
+                accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+            });
+        });
+
+        $(document).ready(function() {
+            $('select').material_select();
+        });
+
+
 
         $('.datepicker').pickadate({
             selectMonths: true, // Creates a dropdown to control month
@@ -92,61 +103,55 @@ include("login_required.php");
                 </form>
             </table>
         </div>
-
-
         <br>
 
         <?php
         $sql= /** @lang mysql */
             "SELECT *, DATE_FORMAT(date,'%d-%m-%Y') AS niceDate
             FROM sessions
-            where personid_fk = $_SESSION[personid]
-            order by date desc";
+            WHERE personid_fk = $_SESSION[personid]
+            ORDER BY date DESC";
         $query = mysql_query($sql);
         while ($row = mysql_fetch_array($query)) {
-            $sessID = $row[sessionid];
+            $sessionid = $row[sessionid];
             $sql2= /** @lang mysql */
-                "select distinct exercise_name,exerciseid_fk from execution
-                join exercise on exerciseid = exerciseid_fk
-                where sessionid_fk = '$sessID'";
+                "SELECT DISTINCT exercise_name,exerciseid_fk,resultid
+                FROM results
+                JOIN exercise ON exerciseid_fk = exerciseid
+                WHERE sessionid_fk = $row[sessionid]";
             $query2 = mysql_query($sql2);
             $exerciseid_fk = null;
             echo "<div class='chill' style='background-color:white; height: 50px;margin-left: 24px;margin-right: 24px; text-align: center'> <h5 style='color: white; padding-top: 10px;'>$row[place] - $row[niceDate]</h5></div>";
             echo "<ul class='collapsible popout' data-collapsible='accordion'>";
-            while ($row = mysql_fetch_array($query2)) {
-                $exerciseid_fk = $row[exerciseid_fk];
+            while ($row1 = mysql_fetch_array($query2)) {
+
                 $sql3= /** @lang mysql */
-                    "select * from execution
-                join exercise on exerciseid = exerciseid_fk
-                where exerciseid_fk= '$row[exerciseid_fk]'
-                and sessionid_fk = '$sessID'";
+                    "SELECT reps,kg,resultid FROM execution
+                    JOIN results ON resultid_fk = resultid
+                    JOIN exercise ON exerciseid_fk = exerciseid
+                    WHERE exerciseid_fk = $row1[exerciseid_fk]
+                    AND sessionid_fk = $sessionid";
                 echo "<li>";
-                echo "<div class='collapsible-header' style='text-align: center'>$row[exercise_name]</div>";
+                echo "<div class='collapsible-header' style='text-align: center'>$row1[exercise_name]</div>";
                 echo "<div class='collapsible-body' style='background-color: white'>";
                 echo "<table class='table striped centered'>";
-                echo '<thead><tr><th>Reps</th><th >Weight (Kg)</th><th>Belt</th></tr></thead>';
+                echo '<thead><tr><th>Reps</th><th >Weight (Kg)</th></tr></thead>';
                 $query3 = mysql_query($sql3);
-                while ($row = mysql_fetch_array($query3)) {
+
+                while ($row2 = mysql_fetch_array($query3)) {
+                    $resultid = $row2[resultid];
                     echo "<tr>";
-                    echo "<td>".$row[reps]."</td>";
-                    echo "<td>".$row[kg]."</td>";
-                    if($row[belt] == 0){
-                        echo "<td>No</td>";
-                    }
-                    else{
-                        echo "<td>Yes</td>";
-                    }
+                    echo "<td>".$row2[reps]."</td>";
+                    echo "<td>".$row2[kg]."</td>";
                     echo "</tr>";
                 }
                 echo "</table>";
                 echo "<table class='table centered'>";
                 echo "<tr style='background-color: white; height: 30%'>";
                 echo "<form class='form-horizontal' role='form' method='POST' action='newSett.php'>";
-                echo "<input type='hidden' name='exerciseid' value='$exerciseid_fk'>";
-                echo "<input type='hidden' name='sessID' value='$sessID'>";
+                echo "<input type='hidden' name='resultid' value=$row1[resultid]>";
                 echo '<td><input class="form-control"  placeholder="Repetitions" name="reps"  type="text" style="text-align: center;"></td>';
                 echo '<td><input class="form-control"  placeholder="Weight"  name="kg"  type="text" style="text-align: center;"></td>';
-                echo '<td><input class="form-control"  placeholder="Belt"   name="belt"  type="text" style="text-align: center;"></td>';
                 echo '<td> <button name="add" type="submit" class="btn" style="margin-left: 10px;">Add Sett</button></td>';
                 echo '</form>';
                 echo "</tr>";
@@ -162,7 +167,7 @@ include("login_required.php");
             echo "<table class='table centered'>";
             echo '<tr>';
             echo '<td style="padding-left: 50px;">';
-            echo "<input type='hidden' name ='sessionid' value='$sessID'>";
+            echo "<input type='hidden' name ='sessionid' value='$sessionid'>";
             echo '<select name="exerciseid">';
             $sql4 = "select * from exercise order by exercise_name";
             $query4 = mysql_query($sql4);
@@ -180,28 +185,8 @@ include("login_required.php");
             echo "</div>";
             echo "</li>";
             echo "</ul>";
-
-
         }
         ?>
-
-
-
-        <script>
-            $(document).ready(function(){
-                $('.collapsible').collapsible({
-                    accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-                });
-            });
-
-            $(document).ready(function() {
-                $('select').material_select();
-            });
-
-        </script>
-
-
-
 
     </div>
 </div>

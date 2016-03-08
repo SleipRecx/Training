@@ -5,7 +5,7 @@ include("login_required.php");
 
 $query = mysql_query(
 /** @lang MYSQL */
-    "select personid,firstname,lastname,exercise_name,muscle_group,category,exerciseid
+    "select personid,firstname,lastname,exercise_name,muscle_group,date_added,category,exerciseid
     from exercise
     join persons on personid=personid_fk");
 
@@ -47,8 +47,8 @@ $query = mysql_query(
                             <th>Exercise Name</th>
                             <th>Muscle Group</th>
                             <th>Category</th>
-                            <th>Added By</th>
                             <th>Date Added</th>
+                            <th>Added By</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -71,13 +71,14 @@ $query = mysql_query(
                             }
                             echo "<td>".$row[muscle_group]."</td>";
                             echo "<td>".$row[category]."</td>";
+                            echo "<td>$row[date_added]</td>";
+
                             if($row[personid]==0){
                                 echo "<td>".$row[firstname]."</td>";
                             }
                             else{
                                 echo "<td>".$row[firstname]." ".$row[lastname]."</td>";
                             }
-                            echo "<td>Null</td>";
 
                             echo "</tr>";
                         }
