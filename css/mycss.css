@@ -189,6 +189,7 @@ nav{
     width: 100%;
     z-index: 1000;
     color: white;
+    min-height: 60px;
 }
 
 #dropdown1{
@@ -199,6 +200,7 @@ nav{
 
 #dropdown1 li a{
     color: white;
+    font-size: 14px;
 }
 
 #dropdown1 li:hover{
