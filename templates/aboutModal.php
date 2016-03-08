@@ -1,7 +1,7 @@
 <div id="modal1" class="modal " style="text-align: center">
     <div class="modal-content">
         <h4>About</h4>
-        <p>Made by with php and javascript</p>
+        <p>Made with PHP and JavaScript</p>
         <p>Frontend design made with  Materialize framework</p>
         <br>
         <p>More info coming soon...</p>
