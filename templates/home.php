@@ -1,19 +1,14 @@
 <?php
 session_start();
-if(empty($_SESSION['logged_in'])) {
-    header('Location: ../index.php');
-    exit;
-}
-
+include("login_required.php");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <?php include("head.php")?>
 </head>
 <body>
-
+<script type="text/javascript" src="../js/materialize.js"></script>
 <nav>
     <?php include("nav.php")?>
 </nav>
@@ -21,27 +16,23 @@ if(empty($_SESSION['logged_in'])) {
 <div id="sidebar" class="visible">
     <?php include("sidebar.php")?>
 </div>
-
 <div class="container active-bar">
-
     <div class="inner">
         <br>
+        <br>
+        <div class="card" style="background-color:#1f7e9a;color:white;text-align: center">
+            <div class="card-image waves-effect waves-block waves-light">
+            </div>
+            <div class="card-content">
+                <h3 id="name">Welcome <?php echo $_SESSION["name"]; ?></h3>
+                <br>
+                <br>
+                <br>
+                <a class="btn tooltipped"  data-position="top"  onclick="logout()" data-delay="20" data-tooltip="Goodbye">Logout</a>
+            </div>
+        </div>
 
-        <br>
-    <div class="alert alert-success" role="alert" style="max-width: 800px;">
-        <br>
-        <h3 id="name">Welcome <?php echo $_SESSION["name"]; ?></h3>
-        <br>
-
-        <br>
-        <br>
-        <button class="btn btn-success" onclick="logout()"> Logout </button>
-        <br>
+        </div>
     </div>
-    <br>
-
-    </div>
-</div>
-
 </body>
 </html>

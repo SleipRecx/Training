@@ -1,10 +1,7 @@
 <?php
 session_start();
 include_once("connection.php");
-if(empty($_SESSION['logged_in'])) {
-    header('Location: ../index.php');
-    exit;
-}
+include("login_required.php");
 $id = $_SESSION["personid"];
 $sql =
 /** @lang MYSQL */
@@ -45,7 +42,7 @@ $sql =
         <!-- Default panel contents -->
         <div class="panel-heading borderless"><h4 style="text-align: center">All Lifts <span class="glyphicon glyphicon-star-empty" style="float: right"></span</h4></div>
         <!-- Table -->
-        <table class="table table-striped">
+        <table class="table striped">
             <thead>
             <tr>
                 <th>Exercise Name</th>
@@ -71,7 +68,7 @@ $sql =
         while ($row = mysql_fetch_array($query)) {
             echo '<div class="panel">';
             echo '<div class="panel-heading borderless"><h4 style="text-align: center">'.$row[exercise_name].'</h4></div>';
-            echo '<table class="table table-striped">';
+            echo '<table class="table striped">';
             echo '<thead><tr><th>Weight (kg)</th><th>Repetitions</th><th>Date</th></tr></thead>';
             $exerciseID = $row[exerciseid];
             $sql2 =

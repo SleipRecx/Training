@@ -7,7 +7,12 @@ if(empty($_SESSION['logged_in'])) {
 }
 if(!empty($_POST["date"])){
 
+
+
     $date = $_POST["date"];
+
+    $timestamp = strtotime($date);
+    $date = date('Y-m-d', $timestamp);
     $place = $_POST["place"];
     $personid_fk = $_SESSION["personid"];
 
@@ -21,6 +26,7 @@ if(!empty($_POST["date"])){
         die('Could not enter data: ' . mysql_error());
     }
 }
-
 header('Location: session.php');
+
+
 

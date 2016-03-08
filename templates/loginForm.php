@@ -1,34 +1,31 @@
-<div class="page-header" style="border-bottom: 1px solid #C5C5C5">
-    <h2>Welcome - Please sign in</h2>
+<div style="border-bottom: 1px solid #b3b3b3; text-align: center">
+    <h3 style="color: #5D5D5D;">Sign in or Register</h3>
 </div>
 <br>
-    <form class="form-horizontal" role="form"  data-toggle="validator" method="POST" action="index.php">
-
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="email">Email:</label>
-            <div class="col-sm-8">
-                <div class="input-group">
-                <span class="input-group-addon" style="border-radius: 0px;" id="basic-addon1"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
-                <input type="email" class="form-control" id ="email" name="email" placeholder="Enter email" data-error="Brusjan that's not a valid email"  required>
-                    </div>
-                <div class="help-block with-errors">
-                    <ul class="list-unstyled"><li style="opacity: 0;">Brusjan that's not a valid email</li></ul>
-                </div>
+<br>
+<div class="row" style="margin-right: 10%; margin-left: 10%">
+    <form class="col s12" method="POST" id="loginForm" action="templates/login.php"">
+    <div class="row">
+        <div class="input-field col s12">
+            <i class="mdi-social-person-outline prefix"></i>
+            <input id="email2" type="email" name = "email" class="validate" required>
+            <label for="email" class="active">Email</label>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="mdi-action-lock-outline prefix"></i>
+                <input id="password" type="password" name = "password" class="validate" required>
+                <label for="password" class="active">Password</label>
             </div>
         </div>
-        <br>
-        <div class="form-group">
-            <label style="display: inline-block" class="control-label col-sm-2" for="password">Password:</label>
-            <div class="col-sm-8">
-                <div class="input-group">
-                    <span class="input-group-addon" style="border-radius: 0px;" id="basic-addon1"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
-                <input type="password" class="form-control" id ="password" name="password" placeholder="Enter password" required>
-                    </div>
+        <div class="row" style="margin-bottom: 0px">
+            <div class="input-field col s6">
+                <button type="submit" name="submit" class="btn waves-effect waves-dark" style="float: right; margin-right: 10px;">Login</button>
+            </div>
+            <div class="input-field col s6">
+                <button onclick="showRegister()" type="button" style="float: left; margin-left: 10px" id="register" class="btn waves-effect waves-dark blue darken-1">Register</button>
             </div>
         </div>
-        <br>
-        <br>
-        <br>
-            <button type="submit" name="submit" class="btn btn-success" style="margin-right: 20px;">Login</button>
-            <button onclick="toggle_visibility('reg');" type="button" id="register" class="btn btn-primary">Register</button>
     </form>
+</div>
+</div>

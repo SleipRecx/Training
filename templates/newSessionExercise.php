@@ -5,22 +5,11 @@ if(empty($_SESSION['logged_in'])) {
     header('Location: ../index.php');
     exit;
 }
-if(!empty($_POST["date"])){
-
-    $date = $_POST["date"];
-    $place = $_POST["place"];
-    $personid_fk = $_SESSION["personid"];
-
-    $sql = /** @lang text */
-        "INSERT INTO sessions(date,place,personid_fk)
-     VALUES ('$date','$place','$personid_fk')";
-
-    $retval = mysql_query($sql);
-
-    if(! $retval) {
-        die('Could not enter data: ' . mysql_error());
-    }
+if(!empty($_POST["exerciseid"])){
+    $name =  $_POST["exerciseid"];
+    $id =  $_POST["sessionid"];
+    echo name;
 }
 
-header('Location: session.php');
+
 

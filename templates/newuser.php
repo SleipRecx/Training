@@ -11,6 +11,7 @@ $password = md5($salt . $_POST["password"]);
 $sql = "SELECT personid FROM persons WHERE email='$email'";
 
 $result = mysql_query($sql);
+echo $firstname;
 
 if (mysql_num_rows($result) != 0) {
     header('Location: ' . $_SERVER['HTTP_REFERER']);
