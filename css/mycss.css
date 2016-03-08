@@ -208,6 +208,9 @@ nav{
 
 /* END NAVIGATION BAR */
 
+#addNew tr:hover{
+    background-color: white; !important;
+}
 
 
 /* START LOGIN SYSTEM CSS */
