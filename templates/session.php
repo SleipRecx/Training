@@ -171,6 +171,7 @@ include("login_required.php");
             echo '<select name="exerciseid">';
             $sql4 = "select * from exercise order by exercise_name";
             $query4 = mysql_query($sql4);
+            echo "<option disabled selected> Select an exercise </option>";
             while ($row = mysql_fetch_array($query4)) {
                 echo '<option value="'.$row[exerciseid].'">'.$row[exercise_name].'</option>';
             }
