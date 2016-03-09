@@ -47,8 +47,8 @@ $query = mysql_query(
                             <th>Exercise Name</th>
                             <th>Muscle Group</th>
                             <th>Category</th>
-                            <th>Date Added</th>
                             <th>Added By</th>
+                            <th>Date Added</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -71,14 +71,8 @@ $query = mysql_query(
                             }
                             echo "<td>".$row[muscle_group]."</td>";
                             echo "<td>".$row[category]."</td>";
+                            echo "<td>".$row[firstname]."</td>";
                             echo "<td>$row[date_added]</td>";
-
-                            if($row[personid]==0){
-                                echo "<td>".$row[firstname]."</td>";
-                            }
-                            else{
-                                echo "<td>".$row[firstname]." ".$row[lastname]."</td>";
-                            }
 
                             echo "</tr>";
                         }
