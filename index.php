@@ -28,6 +28,7 @@ if($_SESSION["logged_in"]){
     window.onload = function(){
         var form = $('#loginForm');
         form.submit(function (ev) {
+            document.getElementById("message").style.display="none";
             document.getElementById("preloader").style.display="block";
             $.ajax({
                 type: form.attr('method'),
@@ -40,7 +41,7 @@ if($_SESSION["logged_in"]){
                     else{
                         setTimeout(function(){
                             document.getElementById("preloader").style.display="none";
-                            alert("Wrong email/password");
+                            document.getElementById("message").style.display="block";
                         },300);
 
                     }
@@ -64,6 +65,7 @@ if($_SESSION["logged_in"]){
             </div>
         </div>
     </div>
+    <div style="text-align: center;display: none" id="message">Wrong email / password</div>
 </div>
 <br>
 <br>
