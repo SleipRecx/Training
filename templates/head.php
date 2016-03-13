@@ -15,8 +15,8 @@
         $('#sidebar-btn').click(function(){
             $('#sidebar').toggleClass('visible');
         })
-        $('#sidebar-btn').click(function(){
-            $('.container').toggleClass('active-bar');
+        $("#sidebar-btn").click(function(){
+            $(".container").toggleClass('active-bar');
         })
     });
 </script>

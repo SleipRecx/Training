@@ -44,6 +44,7 @@ include("login_required.php");
     }
 
     window.onload = function(){
+
         $('.modal-trigger').leanModal({
                 dismissible: true, // Modal can be dismissed by clicking outside of the modal
                 opacity: .5, // Opacity of modal background
@@ -65,7 +66,6 @@ include("login_required.php");
         });
 
 
-
         $('.datepicker').pickadate({
             selectMonths: true, // Creates a dropdown to control month
             selectYears: false
@@ -75,25 +75,27 @@ include("login_required.php");
     }
 
 </script>
+
+
 <div class="container active-bar">
     <div class="inner">
         <?php include("aboutModal.php")?>
         <div class="row">
             <table class="table table-centred" style="width: 70%; margin: 0 auto">
                 <form class="form" role="form" data-toggle="validator" method="POST" action="newSession.php" style="text-align: center">
-                <tr>
-                    <td>
-                        <div class="input-field col s12">
-                            <input type="date" placeholder="Pick Session Date" class="form-control datepicker" name="date"  required>
-                        </div>
+                    <tr>
+                        <td>
+                            <div class="input-field col s12">
+                                <input type="date" placeholder="Pick Session Date" class="form-control datepicker" name="date"  required>
+                            </div>
                         </td>
-                    <td>
-                        <div class="input-field col s12">
-                            <input type="text" class="form-control" placeholder="Enter Session Place" name="place" required>
-                        </div>
-                    </td>
+                        <td>
+                            <div class="input-field col s12">
+                                <input type="text" class="form-control" placeholder="Enter Session Place" name="place" required>
+                            </div>
+                        </td>
 
-                </tr>
+                    </tr>
                     <tr>
                         <td colspan="3">
                             <button type="submit" name="submit"  style="display: block;margin:auto;" class="btn btn-success">New Session</button>
@@ -111,45 +113,46 @@ include("login_required.php");
             FROM sessions
             WHERE personid_fk = $_SESSION[personid]
             ORDER BY date DESC";
-        $query = mysql_query($sql);
-        while ($row = mysql_fetch_array($query)) {
-            $sessionid = $row[sessionid];
+        $result = $conn->query($sql);
+        while($row = $result->fetch_assoc() ){
+            $sessionid = $row["sessionid"];
             $sql2= /** @lang mysql */
                 "SELECT DISTINCT exercise_name,exerciseid_fk,resultid
                 FROM results
                 JOIN exercise ON exerciseid_fk = exerciseid
                 WHERE sessionid_fk = $row[sessionid]";
-            $query2 = mysql_query($sql2);
+
+            $result2 = $conn->query($sql2);
             $exerciseid_fk = null;
             echo "<div class='chill' style='background-color:white; height: 50px;margin-left: 24px;margin-right: 24px; text-align: center'> <h5 style='color: white; padding-top: 10px;'>$row[place] - $row[niceDate]</h5></div>";
             echo "<ul class='collapsible popout' data-collapsible='accordion'>";
-            while ($row1 = mysql_fetch_array($query2)) {
-
+            while($row = $result2->fetch_assoc() ) {
                 $sql3= /** @lang mysql */
                     "SELECT reps,kg,resultid FROM execution
                     JOIN results ON resultid_fk = resultid
                     JOIN exercise ON exerciseid_fk = exerciseid
-                    WHERE exerciseid_fk = $row1[exerciseid_fk]
+                    WHERE exerciseid_fk = $row[exerciseid_fk]
                     AND sessionid_fk = $sessionid";
                 echo "<li>";
-                echo "<div class='collapsible-header' style='text-align: center'>$row1[exercise_name]</div>";
+                echo "<div class='collapsible-header' style='text-align: center'>$row[exercise_name]</div>";
                 echo "<div class='collapsible-body' style='background-color: white'>";
                 echo "<table class='table striped centered'>";
-                echo '<thead><tr><th>Reps</th><th >Weight (Kg)</th></tr></thead>';
-                $query3 = mysql_query($sql3);
+                echo '<thead><tr><th style="font-weight: normal">Reps</th><th style="font-weight: normal">Weight (Kg)</th></tr></thead>';
 
-                while ($row2 = mysql_fetch_array($query3)) {
-                    $resultid = $row2[resultid];
+
+                $result3 = $conn->query($sql3);
+                while($row2 = $result3->fetch_assoc() ) {
+                    $resultid = $row2["resultid"];
                     echo "<tr>";
-                    echo "<td>".$row2[reps]."</td>";
-                    echo "<td>".$row2[kg]."</td>";
+                    echo "<td>".$row2["reps"]."</td>";
+                    echo "<td>".$row2["kg"]."</td>";
                     echo "</tr>";
                 }
                 echo "</table>";
                 echo "<table class='table centered'>";
                 echo "<tr style='background-color: white; height: 30%'>";
                 echo "<form class='form-horizontal' role='form' method='POST' action='newSett.php'>";
-                echo "<input type='hidden' name='resultid' value=$row1[resultid]>";
+                echo "<input type='hidden' name='resultid' value=$row[resultid]>";
                 echo '<td><input class="form-control"  placeholder="Repetitions" name="reps"  type="text" style="text-align: center;"></td>';
                 echo '<td><input class="form-control"  placeholder="Weight"  name="kg"  type="text" style="text-align: center;"></td>';
                 echo '<td> <button name="add" type="submit" class="btn" style="margin-left: 10px;">Add Sett</button></td>';
@@ -170,15 +173,15 @@ include("login_required.php");
             echo "<input type='hidden' name ='sessionid' value='$sessionid'>";
             echo '<select name="exerciseid">';
             $sql4 = "select * from exercise order by exercise_name";
-            $query4 = mysql_query($sql4);
-            echo "<option disabled selected> Select an exercise </option>";
-            while ($row = mysql_fetch_array($query4)) {
-                echo '<option value="'.$row[exerciseid].'">'.$row[exercise_name].'</option>';
+            $result4 = $conn->query($sql4);
+            echo "<option disabled selected>Select an exercise</option>";
+            while ($row4 = $result4->fetch_assoc()) {
+                echo '<option value="'.$row4["exerciseid"].'">'.$row4["exercise_name"].'</option>';
             }
             echo '</select>';
             echo '</td>';
             echo '<td>';
-            echo '<button name="add" style="display: block; margin: 0 auto" type="submit" class="btn exercise" >Add Exercise</button>';
+            echo '<button name="add" style="display:block; margin:0 auto" type="submit" class="btn exercise" >Add Exercise</button>';
             echo '</td>';
             echo '</tr>';
             echo "</table>";

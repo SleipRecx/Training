@@ -13,7 +13,7 @@
             <span></span>
             <span></span>
         </div>
-        <a href="#" class="brand-logo" style="font-size: 1.5em;">Future Logo</a>
+        <a href="#" class="brand-logo" style="font-size: 1.5em;">Logo</a>
         <ul class="right hide-on-med-and-down">
            <li><a class="waves-effect waves-dark modal-trigger" href="#modal1">About</a></li>
             <!-- Dropdown Trigger -->

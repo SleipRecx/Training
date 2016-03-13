@@ -24,6 +24,10 @@ main {
 
 /* START CONTENT CSS */
 
+td, th{
+    padding: 5px 15px;
+}
+
 .inner{
     padding-top: 30px;
     width: 75%;

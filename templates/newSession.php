@@ -1,16 +1,11 @@
 <?php
 session_start();
 include_once("connection.php");
-if(empty($_SESSION['logged_in'])) {
-    header('Location: ../index.php');
-    exit;
-}
+include_once("login_required.php");
+
 if(!empty($_POST["date"])){
 
-
-
     $date = $_POST["date"];
-
     $timestamp = strtotime($date);
     $date = date('Y-m-d', $timestamp);
     $place = $_POST["place"];
@@ -20,13 +15,16 @@ if(!empty($_POST["date"])){
         "INSERT INTO sessions(date,place,personid_fk)
      VALUES ('$date','$place','$personid_fk')";
 
-    $retval = mysql_query($sql);
 
-    if(! $retval) {
-        die('Could not enter data: ' . mysql_error());
+    if($conn->query($sql) == FALSE){
+        die('Could not enter data: ' . $conn->error);
     }
+    else{
+        header('Location: session.php');
+    }
+
 }
-header('Location: session.php');
+
 
 
 

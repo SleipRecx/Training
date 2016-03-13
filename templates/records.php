@@ -57,53 +57,60 @@ include("login_required.php");
                     WHERE personid = $_SESSION[personid]
                     GROUP BY exerciseid)
                     ORDER BY kg DESC";
-                $query = mysql_query($select_pr_for_all_exercise);
-                while ($row = mysql_fetch_array($query)) {
-                    echo "<tr>";
-                    echo "<td>".$row[exercise_name]."</td>";
-                    echo "<td>".$row[kg]."</td>";
-                    echo "<td>".$row[reps]."</td>";
-                    echo "</tr>";
+
+                $result = $conn->query($select_pr_for_all_exercise);
+                if($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>".$row["exercise_name"]."</td>";
+                        echo "<td>".$row["kg"]."</td>";
+                        echo "<td>".$row["reps"]."</td>";
+                        echo "</tr>";
+                    }
                 }
                 ?>
             </table>
         </div>
         <br>
         <?php
-        $query = mysql_query($select_pr_for_all_exercise);
-        while ($row = mysql_fetch_array($query)) {
-            echo '<div class="panel">';
-            echo '<div class="panel-heading borderless"><h4 style="text-align: center">'.$row[exercise_name].'</h4></div>';
-            echo '<table class="table striped">';
-            echo '<thead><tr><th>Weight (kg)</th><th>Repetitions</th><th>Date</th></tr></thead>';
-            $select_pr_for_exercise =
-                /** @lang MYSQL */
-                "SELECT kg,reps,date
-                FROM execution
-                JOIN results ON resultid_fk = resultid
-                JOIN exercise ON exerciseid_fk = exerciseid
-                JOIN sessions s ON sessionid_fk = sessionid
-                JOIN persons  ON s.personid_fk = personid
-                WHERE exerciseid = $row[exerciseid] AND personid = $_SESSION[personid]
-                GROUP BY kg
-                ORDER BY kg DESC";
+        $result = $conn->query($select_pr_for_all_exercise);
+         if($result->num_rows > 0) {
+             while ($row = $result->fetch_assoc()) {
+                 echo '<div class="panel">';
+                 echo '<div class="panel-heading borderless"><h4 style="text-align: center">'.$row["exercise_name"].'</h4></div>';
+                 echo '<table class="table striped">';
+                 echo '<thead><tr><th>Weight (kg)</th><th>Repetitions</th><th>Date</th></tr></thead>';
+                 $select_pr_for_exercise =
+                     /** @lang MYSQL */
+                     "SELECT kg,reps,date
+                        FROM execution
+                        JOIN results ON resultid_fk = resultid
+                        JOIN exercise ON exerciseid_fk = exerciseid
+                        JOIN sessions s ON sessionid_fk = sessionid
+                        JOIN persons  ON s.personid_fk = personid
+                        WHERE exerciseid = $row[exerciseid] AND personid = $_SESSION[personid]
+                        GROUP BY kg
+                        ORDER BY kg DESC";
 
-            $query2 = mysql_query($select_pr_for_exercise);
-            while ($row = mysql_fetch_array($query2)) {
-                echo "<tr>";
-                echo "<td>".$row[kg]."</td>";
-                echo "<td>".$row[reps]."</td>";
-                if($row[date] != null){
-                    echo "<td>".$row[date]."</td>";
-                }
-                else{
-                    echo "<td>Not Registered</td>";
-                }
+                 $result2 = $conn->query($select_pr_for_exercise);
+                 if($result2->num_rows > 0) {
+                     while ($row2 = $result2->fetch_assoc()) {
+                         echo "<tr>";
+                         echo "<td>".$row2["kg"]."</td>";
+                         echo "<td>".$row2["reps"]."</td>";
+                         if($row2["date"] != null){
+                             echo "<td>".$row2["date"]."</td>";
+                         }
+                         else{
+                             echo "<td>Not Registered</td>";
+                         }
 
-                echo "</tr>";
-            }
-            echo "</table></div><br>";
-        }
+                         echo "</tr>";
+                     }
+                 }
+                 echo "</table></div><br>";
+             }
+         }
         ?>
 
 
