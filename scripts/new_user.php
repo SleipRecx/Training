@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("connection.php");
+include_once("db_connection.php");
 
 $salt = "srtg5849jnswf9045h";
 $firstname = $_POST["firstname"];

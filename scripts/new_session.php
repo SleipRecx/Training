@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("connection.php");
+include_once("db_connection.php");
 include_once("login_required.php");
 
 if(!empty($_POST["date"])){
@@ -20,7 +20,7 @@ if(!empty($_POST["date"])){
         die('Could not enter data: ' . $conn->error);
     }
     else{
-        header('Location: session.php');
+        header('Location: ../views/session.php');
     }
 
 }

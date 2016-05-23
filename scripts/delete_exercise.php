@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("connection.php");
+include_once("db_connection.php");
 include_once("login_required.php");
 
 $deleteID = $_POST["removeid"];
@@ -33,7 +33,7 @@ if($result->num_rows > 0) {
             }
             else{
                 echo "<h2 style='text-align: center'>The exercise you are trying to delete is in use</h2>";
-                header("refresh:2;url=exercise.php" );
+                header("refresh:2;url=../views/exercise.php" );
             }
 
         }

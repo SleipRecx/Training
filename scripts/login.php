@@ -1,8 +1,7 @@
 <?php
 session_start();
-include_once("connection.php");
+include_once("db_connection.php");
 
-//Head to home.php if user is already logged in
 $response = 0;
 
 if($_SESSION["logged_in"]==true){
@@ -10,12 +9,10 @@ if($_SESSION["logged_in"]==true){
 }
 
 else{
-    //Retrive user input
     $salt = "srtg5849jnswf9045h";
     $input_email = $_POST["email"];
     $input_password = md5($salt . $_POST["password"]);
 
-    //Retrive from database
     $sql = /** @lang MYSQL */
         "SELECT personid, password,firstname,lastname
         FROM persons
@@ -23,8 +20,7 @@ else{
 
 
     $result = $conn->query($sql);
-
-    //Check if password is correct
+    
     if($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $database_password = $row["password"];
