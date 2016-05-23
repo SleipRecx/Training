@@ -16,6 +16,14 @@ main {
     flex: 1 0 auto;
 }
 
+canvas {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
 .container{
     min-height: 100%;
     min-width: 100vw;
@@ -32,6 +40,10 @@ td, th{
     padding-top: 30px;
     width: 75%;
     margin: 0 auto;
+}
+
+#lastrow:hover{
+    background-color: white;
 }
 
 
@@ -60,6 +72,9 @@ td, th{
 
 .textButton:hover {
    color: red;
+}
+.collapsible-header:hover {
+    background-color: #f2f2f2;
 }
 
 
@@ -194,6 +209,7 @@ nav{
     z-index: 1000;
     color: white;
     min-height: 60px;
+    box-shadow: none !important;
 }
 
 #dropdown1{
