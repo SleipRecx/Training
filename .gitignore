@@ -21,6 +21,9 @@ fagstab/
 out/
 gruppe11.iml
 
+mmi/
+scripts/swift.php
+
 # Eclipse Core
 .project
 
