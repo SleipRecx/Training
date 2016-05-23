@@ -1,4 +1,4 @@
-#Training
+##Training
 A website for logging training
 ![alt tag](http://puu.sh/p2ElA/391d022f61.png)
 
