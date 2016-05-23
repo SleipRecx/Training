@@ -1,29 +1,29 @@
 <?php
 session_start();
-include_once("connection.php");
-include("login_required.php");
+include_once("../scripts/db_connection.php");
+include_once("../scripts/login_required.php");
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include("head.php")?>
+    <?php include("head.php") ?>
 </head>
 <body>
 <script type="text/javascript" src="../js/materialize.js"></script>
 <nav>
-    <?php include("nav.php")?>
+    <?php include("nav.php") ?>
 </nav>
 
 <div id="sidebar" class="visible">
-    <?php include("sidebar.php")?>
+    <?php include("sidebar.php") ?>
 </div>
 
 
 <div class="container active-bar">
     <div class="inner">
-        <?php include("aboutModal.php")?>
+        <?php include("about_modal.php") ?>
         <div class="panel">
             <!-- Default panel contents -->
             <div class="panel-heading borderless"><h4 style="text-align: center">All Lifts <span class="glyphicon glyphicon-star-empty" style="float: right"></span</h4></div>
@@ -83,15 +83,23 @@ include("login_required.php");
                  $select_pr_for_exercise =
                      /** @lang MYSQL */
                      "SELECT kg,reps,date
+						FROM execution
+                        JOIN results ON resultid_fk = resultid
+                        JOIN exercise ON exerciseid_fk = exerciseid
+                        JOIN sessions s ON sessionid_fk = sessionid
+                        JOIN persons  ON s.personid_fk = personid
+                        WHERE exerciseid = $row[exerciseid] AND personid = $_SESSION[personid]
+                        GROUP BY kg,reps
+                        HAVING (kg,reps) IN(
+                     SELECT kg,max(reps)
                         FROM execution
                         JOIN results ON resultid_fk = resultid
                         JOIN exercise ON exerciseid_fk = exerciseid
                         JOIN sessions s ON sessionid_fk = sessionid
                         JOIN persons  ON s.personid_fk = personid
                         WHERE exerciseid = $row[exerciseid] AND personid = $_SESSION[personid]
-                        GROUP BY kg
+                        GROUP BY kg)
                         ORDER BY kg DESC";
-
                  $result2 = $conn->query($select_pr_for_exercise);
                  if($result2->num_rows > 0) {
                      while ($row2 = $result2->fetch_assoc()) {
@@ -104,7 +112,7 @@ include("login_required.php");
                          else{
                              echo "<td>Not Registered</td>";
                          }
-
+ 
                          echo "</tr>";
                      }
                  }

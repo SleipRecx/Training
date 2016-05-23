@@ -4,7 +4,7 @@
 <br>
 <br>
 <div class="row" style="margin-right: 10%; margin-left: 10%">
-    <form class="col s12" method="POST" id="loginForm" action="templates/login.php"">
+    <form class="col s12" method="POST" id="loginForm" action="scripts/login.php"">
     <div class="row">
         <div class="input-field col s12">
             <i class="mdi-social-person-outline prefix"></i>

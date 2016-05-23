@@ -1,11 +1,11 @@
 <?php
 session_start();
-include("login_required.php");
+include_once("../scripts/login_required.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include("head.php")?>
+    <?php include("head.php") ?>
 </head>
 <body>
 <script type="text/javascript" src="../js/materialize.js"></script>
@@ -18,7 +18,7 @@ include("login_required.php");
 </div>
 <div class="container active-bar">
     <div class="inner">
-        <?php include("aboutModal.php")?>
+        <?php include("about_modal.php") ?>
 
         <br>
         <br>
