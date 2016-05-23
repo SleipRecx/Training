@@ -169,7 +169,7 @@
 
     // Define as an AMD module if possible
     if (typeof define === 'function' && define.amd) {
-        define(['jquery', 'datatables'], factory);
+        define(['jquery', 'datatables_min'], factory);
     } else if (typeof exports === 'object') {
         // Node/CommonJS
         factory(require('jquery'), require('datatables'));
@@ -182,6 +182,14 @@
 
 $(document).ready(function() {
     $('#datatable').dataTable( {
+        "ajax": "../scripts/fetch_exercises.php",
+        "columns": [
+            { "data": "exercise_name" },
+            { "data": "muscle_group" },
+            { "data": "firstname" },
+            { "data": "exerciseid" },
+            { "data": "date_added" }
+        ],
         "iDisplayLength": 10,
         "oLanguage": {
             "sStripClasses": "",
@@ -200,3 +208,61 @@ $(document).ready(function() {
         bAutoWidth: false
     } );
 });
+
+$(document).ready(function() {
+    $('#new_exercise_button').on('click', function(){
+        var new_exercise_data = {
+            exercise_name: $('#exercise_name').val(),
+            muscle_group: $('#muscle_group').val(),
+            category: $('#category').val()
+        };
+        $.ajax({
+            type: 'POST',
+            url: '../scripts/new_exercise.php',
+            data: new_exercise_data,
+            success: function(data){
+                console.log(data);
+                var array = JSON.parse(data);
+                var t = document.getElementById("datatable");
+                var table = t.childNodes[3];
+                var row = table.insertRow(0);
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                var cell4 = row.insertCell(3);
+                var cell5 = row.insertCell(4);
+                cell1.innerHTML = array[0];
+                cell2.innerHTML = array[1];
+                cell3.innerHTML = array[2];
+                cell4.innerHTML = "*";
+                cell5.innerHTML = array[3];
+                $('#exercise_name').val("");
+                $('#muscle_group').val("");
+                $('#category').val("");
+            },
+
+            error: function (){
+                alert("Something went wrong adding your exercise");
+            }
+        })
+
+
+    })
+});
+
+function faen(object) {
+    var remove_data = {
+        removeid: $(object).attr('data-id')
+    };
+    $.ajax({
+        type: 'POST',
+        url: '../scripts/delete_exercise.php',
+        data: remove_data,
+        success: function(data2){
+            location.reload();
+        },
+        error: function (){
+            alert("Something went wrong adding your exercise");
+        }
+    })
+}
