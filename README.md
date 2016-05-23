@@ -4,6 +4,10 @@ Website for logging training
 
 ![alt tag](http://puu.sh/p2EX2/2107d3e029.png)
 
+![alt tag](http://puu.sh/p2Fwz/9313093449.png)
+
+
+
 
 Running on http://folk.ntnu.no/markua
 
